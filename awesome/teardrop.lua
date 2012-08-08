@@ -43,8 +43,8 @@ local dropdown = {}
 function toggle(prog, vert, horiz, width, height, sticky, screen)
     local vert   = vert   or "top"
     local horiz  = horiz  or "center"
-    local width  = width  or 1
-    local height = height or 0.25
+    local width  = width  or 0.5
+    local height = height or 0.5
     local sticky = sticky or false
     local screen = screen or capi.mouse.screen
 

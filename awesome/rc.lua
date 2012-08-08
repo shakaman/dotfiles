@@ -269,7 +269,9 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+
+		awful.key({ modkey },"x", function () teardrop("urxvt", "center") end)
 )
 
 clientkeys = awful.util.table.join(
