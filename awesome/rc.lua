@@ -271,7 +271,13 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
 
-		awful.key({ modkey },"x", function () teardrop("urxvt", "center") end)
+		-- Teardrop
+		awful.key({ modkey },"x", function () teardrop("urxvt", "center") end),
+
+		-- Multimedia keys
+		awful.key({ }, "XF86AudioRaiseVolume", function () volume("up", tb_volume) end),
+		awful.key({ }, "XF86AudioLowerVolume", function () volume("down", tb_volume) end),
+		awful.key({ }, "XF86AudioMute", function () volume("mute", tb_volume) end)
 )
 
 clientkeys = awful.util.table.join(
