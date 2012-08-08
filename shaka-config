@@ -1,0 +1,110 @@
+#!/bin/sh
+
+# http://www.ubuntuupdates.org/ppa/google_chrome
+# http://wiki.bash-hackers.org/howto/edit-ed
+# https://github.com/asb/raspi-config/blob/master/raspi-config
+# http://en.wikibooks.org/wiki/Bash_Shell_Scripting/Whiptail
+# http://en.wikibooks.org/wiki/Bash_Shell_Scripting#Referring_to_variables
+# apt-get install deb-multimedia-keyring
+
+do_info() {
+  whiptail --msgbox "
+Fork me on github.\
+" 20 70 1
+}
+
+do_timezone() {
+  dpkg-reconfigure tzdata
+}
+
+do_default() {
+  whiptail --title "Choose packages:" --checklist --separate-output \
+	"Choose packages:" 20 60 16 \
+  "xinit"							"xinit" ON \
+  "firmware-iwlwifi" 	"firmware-iwlwifi" OFF \
+  "wicd" 							"wicd" OFF \
+  "xterm" 						"xterm" ON \
+  "curl" 							"curl" ON \
+  "git" 							"git" OFF \
+  "chromium" 					"chromium" ON \
+  "tree" 							"tree" ON 2>packages
+
+	choices="$( cat packages )"
+  if [ $? -eq 0 ]
+  then
+	sudo apt-get update
+   for pkg in $choices; do
+   	sudo apt-get install $pkg
+   done
+	fi
+}
+
+do_awesome() {
+  whiptail --msgbox "Install awesome" 20 60 1 --cancel-button cancel --ok-button install
+  sudo apt-get install awesome awesome-extra
+
+  whiptail --msgbox "Install shakaTheme and config files" 20 60 1 --cancel-button cancel --ok-button install
+  DIR="$( pwd )"
+  CONFIG="$HOME/.config"
+  if [ ! -d $CONFIG ]; then
+    mkdir -p "$CONFIG"
+  fi
+  ln -s "$DIR/awesome" "$CONFIG/awesome"
+}
+
+do_urxvt() {
+  whiptail --msgbox "Install urxvt package, plugins & themes" 20 60 1 --cancel-button cancel --ok-button install
+  sudo apt-get install rxvt-unicode
+
+	DIR="$( pwd )"
+  sudo ln -s "$DIR/urxvt/tabbedex" "/usr/lib/urxvt/perl/"
+}
+
+do_vim() {
+  whiptail --msgbox "Install vim packages" 20 60 1 --cancel-button cancel --ok-button install
+  sudo apt-get install vim # vim-gui-common
+
+  whiptail --msgbox "Vim is installed successfully" 20 60 1 --cancel-button cancel --ok-button install
+	DIR="$( pwd )"
+  ln -s "$DIR/vim" "$HOME/.vim"
+  ln -s "$DIR/vimrc" "$HOME/vimrc"
+}
+
+do_rvm() {
+  whiptail --msgbox "Install rvm packages" 20 60 1
+  curl -L https://get.rvm.io | bash
+
+  whiptail --msgbox "Install rvm dependencies" 20 60 1
+  sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+  
+  source {$HOME}/.rvm.scripts/rvm
+}
+
+do_irssi() {
+  whiptail --msgbox "Install irssi packages and config files" 20 60 1 --cancel-button cancel --ok-button install
+  sudo apt-get install irssi
+}
+do_finish() {
+  exit 1
+}
+
+while true; do
+  FUN=$(whiptail --title "ShakaConfig" --menu "" 20 80 12 --cancel-button Finish --ok-button Select \
+    "info"      "Information about this tool" \
+    "timezone"  "Set timezone" \
+    "default"   "Install default packages" \
+    "awesome"   "Install awesome with shakaTheme and config files" \
+    "urxvt"     "Install urxvt and plugins" \
+    "vim"       "Install vim, themes and config files" \
+    "rvm"       "Install and configure rvm" \
+    "irssi"     "Install and configure irssi" \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    do_finish
+  elif [ $RET -eq 0 ]; then
+    "do_$FUN" || whiptail --msgbox "There was an error runnning do_$FUN" 20 60 1
+  else
+    exit 1
+  fi
+done
