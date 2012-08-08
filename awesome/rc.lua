@@ -11,7 +11,13 @@ require("naughty")
 require("debian.menu")
 
 require("teardrop")
-require("vicious")
+
+require("precious.sound")
+require("precious.cpu")
+require("precious.ram")
+require("precious.lan")
+require("precious.wlan")
+require("precious.battery")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -43,7 +49,7 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -182,8 +188,13 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
         s == 1 and mysystray or nil,
+				tb_volume,
+				batinfo,	
+				meminfo,
+				cputemp,
+				cpuinfo,
+        mytextclock,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
@@ -249,7 +260,7 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
+    awful.key({ modkey, "Shift" }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
                   mypromptbox[mouse.screen].widget,
