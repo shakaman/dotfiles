@@ -25,7 +25,7 @@ function activecpu(nbcores)
 				str = '<span color="red">' .. str .. '</span>'
 			end
 
-			res = '| CPU: ' .. str .. '% '
+			res = ' CPU: ' .. str .. '% '
 			jiffies[cpu] = newjiffies
 		end
 	end

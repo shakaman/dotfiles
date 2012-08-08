@@ -41,7 +41,7 @@ do_default() {
 
 do_awesome() {
   whiptail --msgbox "Install awesome" 20 60 1 --cancel-button cancel --ok-button install
-  sudo apt-get install awesome awesome-extra
+  sudo apt-get install awesome awesome-extra alsa
 
   whiptail --msgbox "Install shakaTheme and config files" 20 60 1 --cancel-button cancel --ok-button install
   DIR="$( pwd )"

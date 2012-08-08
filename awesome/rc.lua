@@ -49,7 +49,8 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+-- terminal = "urxvt"
+terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -189,12 +190,14 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         s == 1 and mysystray or nil,
+        mytextclock,
 				tb_volume,
+				wifiinfo,
+				laninfo,
 				batinfo,	
 				meminfo,
 				cputemp,
 				cpuinfo,
-        mytextclock,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }

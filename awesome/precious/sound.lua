@@ -13,9 +13,9 @@ function volume (mode, widget)
 		status = string.match(status, "%[(o[^%]]*)%]")
 
 		if string.find(status, "on", 1, true) then
-			volume = "| Vol:<span color='green'>" .. volume .. "</span>% |"
+			volume = " Vol:<span color='green'>" .. volume .. "</span>% |"
 		else
-			volume = "| Vol:<span color='red'>" .. volume .. "</span>M |"
+			volume = " Vol:<span color='red'>" .. volume .. "</span>M |"
 		end
 		widget.text = volume
 	elseif mode == "up" then
