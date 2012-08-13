@@ -109,8 +109,10 @@ hi WildMenu        guifg=#66D9EF guibg=#000000
 if s:molokai_original == 1
    hi Normal          guifg=#F8F8F2 guibg=#272822
    hi Comment         guifg=#75715E
-   hi CursorLine                    guibg=#3E3D32
-   hi CursorColumn                  guibg=#3E3D32
+   "hi CursorLine                    guibg=#3E3D32
+   hi CursorLine                    guibg=#000000
+   "hi CursorColumn                  guibg=#3E3D32
+   hi CursorColumn                  guibg=#000000
    hi LineNr          guifg=#BCBCBC guibg=#3B3A32
    hi NonText         guifg=#BCBCBC guibg=#3B3A32
 else

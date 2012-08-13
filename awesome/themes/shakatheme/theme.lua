@@ -1,0 +1,54 @@
+-------------------------------
+--  "ShakaTheme" awesome theme  --
+-------------------------------
+
+theme = {}
+theme.path = awful.util.getdir("config") .. "/themes/shakatheme"
+theme.wallpaper_cmd = { "awsetbg  ".. theme.path.."/rapsberry.png" }
+
+theme.font      = "Profont 7"
+
+theme.fg_normal = "#ffffff"
+theme.fg_focus  = "#b1d631"
+theme.fg_urgent = "#ff5d28"
+theme.bg_normal = "#00000099"
+theme.bg_focus  = "#00000099"
+theme.bg_urgent = "#00000099"
+
+theme.border_width  = "1"
+theme.border_normal = "#3f3f3f"
+theme.border_focus  = "#b0dd65"
+
+theme.opacity_focus = 0.85
+theme.opacity_normal = 0.75
+
+theme.fg_widget        = "#ababab"
+theme.fg_center_widget = "#ababab"
+theme.fg_end_widget    = "#e8ae5b"
+theme.bg_widget = "#1c1c1c"
+theme.border_widget = "#4d4d4d"
+
+theme.menu_height = "15"
+theme.menu_width  = "100"
+
+theme.taglist_squares_sel   = theme.path.."/taglist/squarefz.png"
+theme.taglist_squares_unsel = theme.path.."/taglist/squarez.png"
+
+theme.awesome_icon           = theme.path.."/awesome-icon.png"
+theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
+theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/floatingw.png"
+
+theme.layout_tile       = theme.path.."/layouts/tile.png"
+theme.layout_tileleft   = theme.path.."/layouts/tileleft.png"
+theme.layout_tilebottom = theme.path.."/layouts/tilebottom.png"
+theme.layout_tiletop    = theme.path.."/layouts/tiletop.png"
+theme.layout_fairv      = theme.path.."/layouts/fairv.png"
+theme.layout_fairh      = theme.path.."/layouts/fairh.png"
+theme.layout_spiral     = theme.path.."/layouts/spiral.png"
+theme.layout_dwindle    = theme.path.."/layouts/dwindle.png"
+theme.layout_max        = theme.path.."/layouts/max.png"
+theme.layout_fullscreen = theme.path.."/layouts/fullscreen.png"
+theme.layout_magnifier  = theme.path.."/layouts/magnifier.png"
+theme.layout_floating   = theme.path.."/layouts/floating.png"
+
+return theme

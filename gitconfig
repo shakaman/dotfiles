@@ -1,0 +1,26 @@
+[user]
+	name = shakaman
+	email = mbenadon@af83.com
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+  pager = true
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  wtf = !git-wtf
+  spull = !git-svn fetch && git-svn rebase
+  spush = !git-svn dcommit
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  msg = commit --allow-empty -m
+  rpull = pull --rebase
+  unstage = reset HEAD
+[core]
+  editor = vim
+[push]
+  default = upstream

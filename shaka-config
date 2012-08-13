@@ -19,24 +19,31 @@ do_timezone() {
 
 do_default() {
   whiptail --title "Choose packages:" --checklist --separate-output \
-	"Choose packages:" 20 60 16 \
-  "xinit"							"xinit" ON \
-  "firmware-iwlwifi" 	"firmware-iwlwifi" OFF \
-  "wicd" 							"wicd" OFF \
-  "xterm" 						"xterm" ON \
-  "curl" 							"curl" ON \
-  "git" 							"git" OFF \
-  "chromium" 					"chromium" ON \
-  "tree" 							"tree" ON 2>packages
+    "Choose packages:" 20 60 16 \
+    "xinit"             "xinit" ON \
+    "firmware-iwlwifi"  "firmware-iwlwifi" OFF \
+    "htop"              "htop" ON \
+    "netdiscover"       "netdiscover" ON \
+    "wicd"              "wicd" OFF \
+    "xterm"             "xterm" ON \
+    "curl"              "curl" ON \
+    "git"               "git" OFF \
+    "gitg"              "gitg" ON \
+    "chromium"          "chromium" ON \
+    "ack-grep"          "ack-grep" ON \
+    "tree"              "tree" ON \
+    "nginx"             "nginx" ON \
+    "nodejs-dev"        "nodejs-dev" ON \
+    "ttf-mscorefonts-installer" "Miscrosoft fonts" ON 2>packages
 
-	choices="$( cat packages )"
+  choices="$( cat packages )"
   if [ $? -eq 0 ]
   then
-	sudo apt-get update
-   for pkg in $choices; do
-   	sudo apt-get install $pkg
-   done
-	fi
+    sudo apt-get update
+    for pkg in $choices; do
+      sudo apt-get install $pkg
+    done
+  fi
 }
 
 do_awesome() {
@@ -56,16 +63,17 @@ do_urxvt() {
   whiptail --msgbox "Install urxvt package, plugins & themes" 20 60 1 --cancel-button cancel --ok-button install
   sudo apt-get install rxvt-unicode
 
-	DIR="$( pwd )"
+  DIR="$( pwd )"
   sudo ln -s "$DIR/urxvt/tabbedex" "/usr/lib/urxvt/perl/"
+  ln -s "$DIR/Xdefaults" "$HOME/.Xdefaults"
 }
 
 do_vim() {
   whiptail --msgbox "Install vim packages" 20 60 1 --cancel-button cancel --ok-button install
-  sudo apt-get install vim # vim-gui-common
+  sudo apt-get install vim vim-gui-common vim-gnome
 
   whiptail --msgbox "Vim is installed successfully" 20 60 1 --cancel-button cancel --ok-button install
-	DIR="$( pwd )"
+  DIR="$( pwd )"
   ln -s "$DIR/vim" "$HOME/.vim"
   ln -s "$DIR/vimrc" "$HOME/vimrc"
 }
@@ -76,7 +84,7 @@ do_rvm() {
 
   whiptail --msgbox "Install rvm dependencies" 20 60 1
   sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
-  
+
   source {$HOME}/.rvm.scripts/rvm
 }
 
