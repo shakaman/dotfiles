@@ -205,5 +205,5 @@ batinfo:add_signal('mouse::leave', function () clearinfo(showbatinfos) end)
 -- Assign a hook to update info
 activebat_timer = timer({timeout = 1})
 activebat_timer:add_signal("timeout", function ()
-batinfo.text = "BAT: " .. activebat(path) .. " |" end)
+batinfo.text = "bat: " .. activebat(path) .. " |" end)
 activebat_timer:start()

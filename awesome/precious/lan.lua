@@ -17,5 +17,5 @@ laninfo = widget({ type = "textbox" , name = "laninfo" })
 
 -- Assign a hook to update info
 lanstatus__timer = timer({timeout = 1})
-lanstatus__timer:add_signal("timeout", function() laninfo.text = " LAN: " .. lanstatus() .. " | " end)
+lanstatus__timer:add_signal("timeout", function() laninfo.text = " lan: " .. lanstatus() .. " | " end)
 lanstatus__timer:start()

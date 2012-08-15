@@ -61,13 +61,13 @@ function activeram()
 	res = memused
 
 	if ramusg < 51 then
-		res = '<span color="green">' .. res .. '</span>MB (<span color="green">' .. ramusg_str .. '</span>%)'
+		res = '<span color="green">' .. res .. '</span>mb (<span color="green">' .. ramusg_str .. '</span>%)'
 	elseif	ramusg < 71 then
-		res = '<span color="yellow">' .. res .. '</span>MB (<span color="yellow">' .. ramusg_str .. '</span>%)'
+		res = '<span color="yellow">' .. res .. '</span>mb (<span color="yellow">' .. ramusg_str .. '</span>%)'
 	elseif  ramusg < 86 then
-		res = '<span color="orange">' .. res .. '</span>MB (<span color="orange">' .. ramusg_str .. '</span>%)'
+		res = '<span color="orange">' .. res .. '</span>mb (<span color="orange">' .. ramusg_str .. '</span>%)'
 	else
-		res = '<span color="red">' .. res .. '</span>MB (<span color="red">' .. ramusg_str .. '</span>%)'
+		res = '<span color="red">' .. res .. '</span>mb (<span color="red">' .. ramusg_str .. '</span>%)'
 	end
 
 	return res
@@ -79,5 +79,5 @@ meminfo:add_signal('mouse::leave', function () clearinfo(showraminfo) end)
 
 -- Assign a hook to update info
 meminfo_timer = timer({timeout = 1})
-meminfo_timer:add_signal("timeout", function() meminfo.text = activeram() .. " | "  end)
+meminfo_timer:add_signal("timeout", function() meminfo.text = "ram: " .. activeram() .. " | "  end)
 meminfo_timer:start()

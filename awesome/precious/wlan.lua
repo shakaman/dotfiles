@@ -36,5 +36,5 @@ wifiinfo:buttons({
 
 -- Assign a hook to update info
 wifistatus__timer = timer({timeout = 1})
-wifistatus__timer:add_signal("timeout", function() wifiinfo.text = "WLAN: " .. wifistatus() .. " | " end)
+wifistatus__timer:add_signal("timeout", function() wifiinfo.text = "wlan: " .. wifistatus() .. " | " end)
 wifistatus__timer:start()

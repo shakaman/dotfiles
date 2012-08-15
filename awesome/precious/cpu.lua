@@ -25,7 +25,7 @@ function activecpu(nbcores)
 				str = '<span color="red">' .. str .. '</span>'
 			end
 
-			res = ' CPU: ' .. str .. '% '
+			res = ' cpu: ' .. str .. '% '
 			jiffies[cpu] = newjiffies
 		end
 	end
@@ -66,5 +66,5 @@ cputemp = widget({ type = "textbox" , name = "cputemp" })
 
 -- Assign a hook to update temperature
 cputemp_timer = timer({timeout = 1})
-cputemp_timer:add_signal("timeout", function() cputemp.text = "@ " .. activecputemp() .. "°C | RAM: " end)
+cputemp_timer:add_signal("timeout", function() cputemp.text = "@ " .. activecputemp() .. "°C | " end)
 cputemp_timer:start()
