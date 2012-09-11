@@ -4,7 +4,7 @@
 
 theme = {}
 theme.path = awful.util.getdir("config") .. "/themes/shakatheme"
-theme.wallpaper_cmd = { "awsetbg  ".. theme.path.."/rapsberry.png" }
+theme.wallpaper_cmd = { "awsetbg /home/shakaman/.config/awesome/themes/shakatheme/raspberry.png" }
 
 theme.font      = "Profont 7"
 

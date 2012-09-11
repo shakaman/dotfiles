@@ -75,7 +75,7 @@ do_vim() {
   whiptail --msgbox "Vim is installed successfully" 20 60 1 --cancel-button cancel --ok-button install
   DIR="$( pwd )"
   ln -s "$DIR/vim" "$HOME/.vim"
-  ln -s "$DIR/vimrc" "$HOME/vimrc"
+  ln -s "$DIR/vimrc" "$HOME/.vimrc"
 }
 
 do_rvm() {

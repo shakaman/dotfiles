@@ -208,3 +208,5 @@ autocmd FileType python setlocal ts=2 sw=2 noexpandtab
 autocmd FileType haml setlocal cursorcolumn cursorline
 autocmd FileType sass setlocal cursorcolumn cursorline
 autocmd FileType jade setloca cursorcolumn cursorline
+
+au BufNewFile,BUfRead *.ino set filetype=arduino
