@@ -50,7 +50,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "+"
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "•"
 }
 
 function parse_git_branch {
@@ -58,10 +58,16 @@ function parse_git_branch {
   echo "("${ref#refs/heads/}$(parse_git_dirty)")"
 }
 
+PINK=$'\e[35;40m'
+GREEN=$'\e[32;40m'
+ORANGE=$'\e[33;40m'
+
 if [ "$color_prompt" = yes ]; then
-  PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[0;32m\]\$(parse_git_branch)\[\033[00m\]\$ "
+  #PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[0;32m\]\$(parse_git_branch)\[\033[00m\]\$ "
+  PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;31m\]\W\[\033[01;35m\]\$(parse_git_branch)\[\033[00m\]\$ "
+  #PS1="${debian_chroot:+($debian_chroot)}${GREEN}\u@\h${GREEN}:${PINK}\W\${ORANGE}\$(parse_git_branch)\[\033[00m\]\$ "
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -110,3 +116,5 @@ fi
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/lib
