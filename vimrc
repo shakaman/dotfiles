@@ -62,6 +62,7 @@ set cot=menuone
 set encoding=utf8
 set termencoding=macroman
 set fileencoding=utf8
+set colorcolumn=80
 
 set mouse=a
 set guifont=Monospace\ 8
